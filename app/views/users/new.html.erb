@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="col"></div>
+<div class="col-md-6">
+	<div class="jumbotron" style="margin-top: 10%">
+    <h3 > Sign Up</h3>
+    <div style="color:red">
+   <% if @user.errors.any? %>
+   <% @user.errors.full_messages.each do |e| %>
+
+          <h6>*<%=  e %></h6>
+          <% end %>
+   <% end %>
+</div>
+	<%= form_for @user do |f| %>
+<%= f.text_field :name , placeholder:"Your Name",class:'form-control' %>
+<%= f.email_field :email , placeholder:"Email",class:'form-control' %>
+<%= f.password_field :password ,placeholder:'password',class:'form-control' %>
+<%=f.password_field :password_confirmation,placeholder:"confirm password",class:'form-control' %>
+<%=f.file_field :image,class:'form-control' %>
+<%= f.submit "sign up", class:'btn btn-lg btn-success' %><br>
+
+
+	<%end%>
+
+</div>
+</div>
+
+
+	<div class="col"></div>
+</div>

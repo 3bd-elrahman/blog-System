@@ -1,0 +1,34 @@
+
+
+<div class="row" style="padding-top:10%  ">
+	<div class="col"></div>
+	<div class="col-md-8">
+<%= form_for @article do  |f|%>
+
+<div>
+<strong>Title </strong><%= f.text_field :title ,class:'form-control' %>
+</div><br>
+
+<div>
+		<strong>Article </strong>
+
+	<%= f.text_area :body,class:'form-control edit-article' %>
+</div><br>
+
+
+<div>
+		
+
+	<%= f.file_field :image,class:'form-control' %>
+</div><br>
+
+
+<div>
+	<%= f.submit class:'btn btn-lg btn-success' %>
+</div>
+
+<% end %>
+</div>
+<div class="col"></div>
+
+</div>

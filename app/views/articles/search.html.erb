@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col"></div>
+	<div class="col-md-10">
+ <%= link_to 'Write Article' , new_article_path,class:'btn btn-lg btn-primary' %>
+<table class="table table-hover">
+  <thead>
+  	<th>title</th>
+  	<th>article</th>
+  	<th colspan="3">Options</th>
+	</thead>
+	<tbody>
+		<% @articles.each do |article|%>
+		<tr>
+  <td><%= article.title%></td>
+  <td><%= truncate(article.body,length:70)%></td>
+ <td><%= link_to 'show' ,article_path(article.id),class:'btn btn-sm btn-success'%></td>
+ <td><%= link_to 'Edit' ,edit_article_path(article.id),class:'btn btn-sm btn-warning'%></td>
+   <td><%= link_to 'Delete',article_path(article.id),method: :Delete,data:{confirm:'are you sure?'},class:'btn btn-sm btn-danger'%></td>
+		</tr>
+
+		<% end%>
+	</tbody>
+
+
+</table>
+
+
+<%= link_to 'Home',root_path %>
+</div>
+	<div class="col"></div>
+
+</div>

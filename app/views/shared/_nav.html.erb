@@ -1,0 +1,51 @@
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <h2 style="color:orange">Arab Blogger</h2>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item ">
+        <%= link_to 'Home',root_path,class:"nav-link" %>
+
+      </li>
+
+
+      <li class="nav-item">
+                <%= link_to 'Blog',articles_path,class:"nav-link" %>
+      </li>
+      <% if current_user.nil?%>
+      <li class="nav-item">
+        <%= link_to 'Sign Up' , new_user_path,class:"nav-link" %>
+      </li>
+      <% end %>
+      <li class="nav-item">
+        <% if current_user.nil? %>
+        <%= link_to 'Sign in' , new_session_path,class:"nav-link" %>
+     <% else %>
+             <%= link_to 'log out' , session_path(current_user.id),method: :delete,class:"nav-link" %>
+     <% end %>
+      </li>
+      <li>
+        <% if current_user %>
+      <%= link_to 'My Articles', profile_index_path ,class:"nav-link"%>
+
+        <%end%>
+      </li>
+    <li>
+      <% if current_user&.admin == true %>
+      <%= link_to 'subscribers',subscribers_path ,class:"nav-link"%>
+      <% end %>
+    </li>
+
+
+    </ul>
+    <div class="form-inline">
+    <%= form_tag search_articles_path , method: :get do%>
+    <%= text_field_tag :search , nil,placeholder:'search', class:"form-control mr-sm-2" %>
+    <%= submit_tag 'search',class:"btn btn-outline-success my-2 my-sm-0"%>
+</div>
+    <% end %>
+    
+  </div>
+</nav>

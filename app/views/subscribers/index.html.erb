@@ -1,0 +1,39 @@
+<div class="row">
+
+<div class="col"></div>
+<div class="col-md-10">
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>first name</th>
+			<th>last name</th>
+			<th>email</th>
+			<th>country</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @subscribers.each do |subscriber| %>
+
+     <tr>
+     	
+     	<td><%= subscriber.f_name %></td>
+     	<td><%= subscriber.l_name %></td>
+     	<td><%= subscriber.email %></td>
+     	<td><%= subscriber.country %></td>
+     	<td><%= link_to 'Delete',subscriber_path(subscriber.id),method: :delete ,data:{confirm:'are you sure?'},class:'btn btn-md btn-danger'%></td>
+
+     </tr>
+
+
+		<% end %>
+
+	</tbody>
+
+
+</table>
+
+	</div>
+
+<div class="col"></div>
+</div>

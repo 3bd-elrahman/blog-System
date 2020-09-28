@@ -1,0 +1,12 @@
+		<%  raw user=User.find(@comment.user_id)%>
+<div  id='<%= @comment.id%>' style='padding:3px;margin-bottom: 3px;'>
+
+
+<% if user.image.attached? %><%= image_tag user&.image,class:'profile_picture'%> <%end%>
+<span style='color: blue; font-weight:bold'><%= user.name%> : </span>&nbsp &nbsp &nbsp<%= @comment.body%> 
+
+<% if current_user&.admin || @comment.user_id == current_user&.id ||@article.user_id == current_user&.id  %>
+		<%= link_to 'Delete',article_comment_path(@comment.article,@comment),method: :Delete,remote:true%>
+   <% end %>
+
+</div>

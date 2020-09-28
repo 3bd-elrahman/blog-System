@@ -1,0 +1,56 @@
+<div class="row" style="margin-top:20px">
+<div class="col"></div>
+<div class="col-md-8" style="background-color:white;border-top: 5px solid orange">
+<div >
+<h1><%= @article.title %></h1>
+<span><%= @article.created_at.strftime("%a, %d %b %Y ") %></span>
+<p style="font-weight:bold">written by: <span style="color:orange;"><%=User.find(@article.user_id).name%></span></p>
+<% if @article.image.attached? %>
+	<%=image_tag (@article.image),class:"article-image" %><br>
+	<% end %>
+</div>
+
+<div class=" show-article" readonly><p><%= @article.body%></p></div>
+
+<div class="comments-show">
+<span style="border-bottom: 2px solid orange;font-weight: bold"> comments</span>
+
+	<% @article.comments.each do |comment| %>
+		<% user=User.find(comment.user_id)%>
+<div id='<%= comment.id%>' style='padding:3px;margin-bottom: 3px;'>
+	
+<% if user.image.attached? %><%= image_tag user&.image,class:'profile_picture'%> <%end%>
+
+<span style='color: blue; font-weight:bold'><%= user.name%> : </span>&nbsp &nbsp &nbsp<%= comment.body%> 
+		
+		<% if current_user&.admin || comment.user_id == current_user&.id ||@article.user_id == current_user&.id  %>
+		<%= link_to 'Delete',article_comment_path(comment.article,comment),method: :Delete ,remote:true%>
+   <% end %>
+	</div>
+
+
+	<% end %>
+	</div>
+
+
+
+<%= render 'comments/commentF' %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<div class="col"></div>
+</div>

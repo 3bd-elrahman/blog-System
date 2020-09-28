@@ -1,0 +1,22 @@
+
+<% if current_user.nil? %>
+<div class="text-center" style="color:orange">
+	<h3 >please log in to post a comment </h3>
+        <%= link_to 'Sign in' , new_session_path,class:"btn btn-md btn-success" %>
+         <%= link_to 'Sign Up' , new_user_path,class:"btn btn-md btn-success"  %>
+
+	</div>
+
+<%else %>
+<%= form_for([@article,@article.comments.build],remote:true,class:'post-comment') do|f| %>
+
+
+<%= f.text_area :body ,placeholder:'Add a comment',class:'form-control comment-field',id:'comment-field'%>
+
+
+	<%= f.submit 'Post',class:'btn btn-sm btn-warning ' ,style:"float:right" %>
+	<% end %>
+
+
+	<% end %>
+       <%= link_to 'Back' ,articles_path  %>

@@ -1,0 +1,43 @@
+<div class="row" style="padding-top: 5%">
+	<div class="col"></div>
+	<div class="col-md-8">
+<div class="error_list">
+	<% if @article.errors.any? %>
+     <% @article.errors.full_messages.each do|msg| %>
+       <p><%= msg %></p>
+     <%end%>
+	<% end %>
+</div>
+
+
+<div>
+<%= form_for @article do  |f|%>
+
+<div>
+<%= f.text_field :title,placeholder:"title" ,class:'form-control '%>
+</div><br>
+
+<div>
+	<%= f.text_area :body,placeholder:'your article',class:'form-control  write-article' %>
+</div>
+<div>
+	<%= f.file_field :image,class:'form-control' %>
+</div>
+<br>
+<div>
+	<%= f.submit class:'btn btn-lg btn-success' %>
+</div>
+
+
+<% end %>
+</div>
+</div>
+
+	<div class="col"></div>
+
+
+
+
+
+
+</div>

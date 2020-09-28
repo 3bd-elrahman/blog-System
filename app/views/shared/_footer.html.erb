@@ -1,0 +1,25 @@
+			<div class="row footer " style="border-top: 2px solid orange">	
+	<div class="col footer-left" style="background-color: red"> </div>
+
+	<div class="col-md-4" style="background-color:black">
+
+		<h5 class="text-center" style="color:white;">subscribe</h5>
+		<span style="color:green">    <%= params[:notice] %></span>
+		<%= form_for :subscriber , url:subscribers_path do|f| %>
+         <%= f.text_field :f_name,placeholder:"First Name",class:'form-control' %><br>
+         <%= f.text_field :l_name,placeholder:'Last Name',class:'form-control' %><br>
+         <%=f.email_field :email,placeholder:'Email',class:'form-control' %><br>
+         <span style="color:red"><%=params[:alert]%></span>
+         <%= f.select :country,options_for_select(subscriber_country),prompt:"select your country",class:'form-control'%>
+         
+         <br>
+         <%= f.submit 'subscribe', class:'btn btn-md btn-warning' %>
+
+		<% end %>
+
+
+	</div>
+
+	<div class="col footer-right" style="background-color: red"></div>
+
+</div>

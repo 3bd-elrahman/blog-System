@@ -1,0 +1,43 @@
+<div class="row" style="margin-top: 10px">
+	<div class="col"></div>
+	<div class="col-md-12">
+ <%= link_to 'Write Article' , new_article_path,class:'btn btn-lg btn-warning' %>
+<table class="table table-hover">
+  <thead>
+  	<th>Bloger</th>
+  	<th>title</th>
+  	<th>article</th>
+  	<th colspan="3"></th>
+	</thead>
+	<tbody>
+		<% @articles.each do |article|%>
+		<% user=User.find(article.user_id)%>
+		<tr>
+			<% if user.image.attached? %>
+		<td><%= image_tag user.image,class:'profile_picture'%> <span class="user-name"><%= user.name %></span></td>
+		<% else %>
+<td><%= image_tag 'default photo.png',class:'profile_picture'%> <span class="user-name"><%= user.name %></span></td>
+		<% end %>
+  <td><%= article.title%></td>
+  <td><%= truncate(article.body,length:50)%></td>
+ <td><%= link_to 'Read' ,article_path(article.id),class:'btn btn-sm btn-warning'%></td>
+
+ <% if current_user&.articles&.include?(article) || current_user&.admin %>
+ <td><%= link_to 'Edit' ,edit_article_path(article.id),class:'btn btn-sm btn-warning'%></td>
+   <td><%= link_to 'Delete',article_path(article.id),method: :Delete,data:{confirm:'are you sure?'},class:'btn btn-sm btn-danger'%></td>
+     <% end %>
+
+		</tr>
+
+		<% end%>
+	</tbody>
+
+
+</table>
+
+
+<%= link_to 'Home',root_path %>
+</div>
+	<div class="col"></div>
+
+</div>
